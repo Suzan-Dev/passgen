@@ -1,1 +1,3 @@
-console.log('Hello world!')
+if (process.argv.includes("sayHello")) {
+  console.log("Hello");
+}
