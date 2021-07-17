@@ -1,7 +1,9 @@
+#!/usr/bin/env node
 const { program } = require('commander');
 const chalk = require('chalk');
 const clipboardy = require('clipboardy');
 const generatePassword = require('./utils/generatePassword');
+const savePassword = require('./utils/savePassword');
 
 program.version('1.0.0').description('Simple password generator');
 
@@ -18,5 +20,10 @@ const { length, numbers, symbols, save } = options;
 const geneartedPassword = generatePassword(length, numbers, symbols);
 
 clipboardy.writeSync(geneartedPassword);
+
+if (save) {
+  savePassword(geneartedPassword);
+}
+
 console.log(chalk.blue('Generated Password: ') + chalk.bold(geneartedPassword));
-console.log(chalk.green('Copied to your clipboard!'));
+console.log(chalk.yellowBright('Copied to your clipboard!'));
